@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emre Demirbaş | Veri Bilimci & AI Uzmanı</title>
+    <meta name="description"
+        content="Emre Demirbaş - Elektrik-Elektronik Mühendisi, Veri Bilimci, AI ve Makine Öğrenmesi Uzmanı. Python, LLM, Generative AI alanlarında uzman.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-text">ED</span>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#hero" class="nav-link">Ana Sayfa</a></li>
+                <li><a href="#about" class="nav-link">Hakkımda</a></li>
+                <li><a href="#skills" class="nav-link">Beceriler</a></li>
+                <li><a href="#experience" class="nav-link">Deneyim</a></li>
+                <li><a href="#education" class="nav-link">Eğitim</a></li>
+                <li><a href="#certificates" class="nav-link">Sertifikalar</a></li>
+                <li><a href="#contact" class="nav-link">İletişim</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-animation">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="hero-greeting">Merhaba, ben</p>
+                    <h1 class="hero-name">Emre Demirbaş</h1>
+                    <div class="hero-title-wrapper">
+                        <span class="hero-title-static">Ben bir </span>
+                        <span class="hero-title typing-text" id="typing-text"></span>
+                        <span class="cursor">|</span>
+                    </div>
+                    <p class="hero-description">
+                        Veri bilimi, yapay zeka ve makine öğrenmesi alanlarında uzmanlaşmış bir mühendisim.
+                        LLM, Generative AI ve AI Agents teknolojileriyle yenilikçi çözümler geliştiriyorum.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            <i class="fas fa-envelope"></i>
+                            İletişime Geç
+                        </a>
+                        <a href="#experience" class="btn btn-secondary">
+                            <i class="fas fa-briefcase"></i>
+                            Deneyimlerim
+                        </a>
+                    </div>
+                    <div class="hero-social">
+                        <a href="https://linkedin.com/in/" target="_blank" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://medium.com/@" target="_blank" class="social-link" title="Medium">
+                            <i class="fab fa-medium-m"></i>
+                        </a>
+                        <a href="https://github.com/" target="_blank" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://kaggle.com/" target="_blank" class="social-link" title="Kaggle">
+                            <i class="fab fa-kaggle"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-wrapper">
+                        <div class="image-glow"></div>
+                        <img src="resimler/pp.jpeg" alt="Emre Demirbaş" class="profile-image">
+                    </div>
+                    <div class="floating-badge badge-1">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="floating-badge badge-2">
+                        <i class="fas fa-brain"></i>
+                        <span>AI/ML</span>
+                    </div>
+                    <div class="floating-badge badge-3">
+                        <i class="fas fa-database"></i>
+                        <span>Data</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Aşağı Kaydır</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Hakkımda</span>
+                <h2 class="section-title">Kim Ben?</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text reveal-left">
+                    <p>
+                        <strong>Elektrik-Elektronik Mühendisi</strong> olarak mezun oldum ve kariyerime <strong>Veri
+                            Bilimi</strong>
+                        alanında devam ediyorum. Turkcell Global Bilgi'de <strong>Sabit ICT Uzmanı</strong> olarak
+                        çalışıyorum.
+                    </p>
+                    <p>
+                        Müşteri şikayetlerini analiz ederek MSSQL, PostgreSQL ve Oracle veritabanları üzerinde L1-L2
+                        düzeyinde
+                        çözümler üretiyorum. RPA ile otomotiv sektöründe bilgisayarlı görü projesi geliştirdim.
+                    </p>
+                    <p>
+                        Google'ın 27 milyar parametreli Gemma 3 modelini GPU sunucuları üzerinde çalıştırarak,
+                        <strong>MCP (Model Context Protocol)</strong> altyapısıyla LLM ve veritabanı arasında güvenli
+                        iletişim katmanı kuruyorum.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="5">0</span>
+                            <span class="stat-label">Yıl Deneyim</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="20">0</span>
+                            <span class="stat-label">Sertifika</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="10">0</span>
+                            <span class="stat-label">Proje</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-info reveal-right">
+                    <div class="info-card">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <span class="info-label">Konum</span>
+                                <span class="info-value">Diyarbakır, Türkiye</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <span class="info-label">E-posta</span>
+                                <span class="info-value">cv.emredemirbas@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-language"></i>
+                            <div>
+                                <span class="info-label">Dil</span>
+                                <span class="info-value">İngilizce (B2)</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <span class="info-label">Eğitim</span>
+                                <span class="info-value">Elektrik-Elektronik Müh.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Yetenekler</span>
+                <h2 class="section-title">Becerilerim</h2>
+            </div>
+            <div class="skills-content">
+                <div class="skills-category reveal-up">
+                    <h3 class="category-title">
+                        <i class="fas fa-code"></i>
+                        Programlama & AI
+                    </h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">LLM (Büyük Dil Modelleri)</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Generative AI</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">AI Agents</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills-category reveal-up">
+                    <h3 class="category-title">
+                        <i class="fas fa-chart-bar"></i>
+                        Veri Bilimi & ML
+                    </h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Makine Öğrenmesi (ML)</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Derin Öğrenme (DL)</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Veri Mühendisliği</span>
+                                <span class="skill-percentage">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="88"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">İstatistiksel Analiz</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="85"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills-category reveal-up">
+                    <h3 class="category-title">
+                        <i class="fas fa-database"></i>
+                        Veritabanı & Araçlar
+                    </h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">SQL</span>
+                                <span class="skill-percentage">92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="92"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Microsoft Power BI</span>
+                                <span class="skill-percentage">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="88"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">RPA</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">NLP & TensorFlow</span>
+                                <span class="skill-percentage">82%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="82"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tech-stack reveal-up">
+                <h3 class="tech-title">Teknoloji Yığını</h3>
+                <div class="tech-icons">
+                    <div class="tech-icon" title="Python">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <div class="tech-icon" title="Docker">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <div class="tech-icon" title="Kubernetes">
+                        <i class="fas fa-dharmachakra"></i>
+                    </div>
+                    <div class="tech-icon" title="PostgreSQL">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="tech-icon" title="MongoDB">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="tech-icon" title="Apache Kafka">
+                        <i class="fas fa-stream"></i>
+                    </div>
+                    <div class="tech-icon" title="Hadoop">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="tech-icon" title="Git">
+                        <i class="fab fa-git-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section experience" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Kariyer</span>
+                <h2 class="section-title">İş Deneyimi</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item reveal-left">
+                    <div class="timeline-marker">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-date">10/2023 - Devam</span>
+                            <span class="timeline-badge current">Güncel</span>
+                        </div>
+                        <h3 class="timeline-title">Sabit ICT Uzmanı</h3>
+                        <h4 class="timeline-company">Turkcell Global Bilgi</h4>
+                        <p class="timeline-description">
+                            Turkcell Superonline müşteri şikayetlerini MSSQL, PostgreSQL, Oracle üzerinden analiz ederek
+                            L1-L2 düzeyinde çözümler üretiyorum. RPA ile otomotiv sektöründe bilgisayarlı görü projesi
+                            geliştirdim.
+                            Google'ın Gemma 3 modelini GPU sunucularında çalıştırarak MCP altyapısıyla akıllı iş
+                            akışları tasarlıyorum.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">LLM</span>
+                            <span class="tag">MCP</span>
+                            <span class="tag">RPA</span>
+                            <span class="tag">Power BI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item reveal-right">
+                    <div class="timeline-marker">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-date">07/2023 - 09/2023</span>
+                        </div>
+                        <h3 class="timeline-title">Veri Bilimci</h3>
+                        <h4 class="timeline-company">Turkcell Global Bilgi - Technocamp 2023</h4>
+                        <p class="timeline-description">
+                            4.000 kişi arasından seçilerek kadroya alınan 30 kişilik ekipte yer aldım.
+                            Veri bilimi alanında kapsamlı eğitimler aldım.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Veri Bilimi</span>
+                            <span class="tag">Analytics</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item reveal-left">
+                    <div class="timeline-marker">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-date">04/2023 - 07/2023</span>
+                        </div>
+                        <h3 class="timeline-title">Veri Bilimci</h3>
+                        <h4 class="timeline-company">Elektrikli Şarj İstasyon Ağı - Green Science</h4>
+                        <p class="timeline-description">
+                            Python ile API üzerinden OCPP loglarını toplayarak şarj istasyonlarının iletişim
+                            protokollerini
+                            ve performansını analiz ettim. Web sitesi tasarımını yaptım.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">API</span>
+                            <span class="tag">OCPP</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item reveal-right">
+                    <div class="timeline-marker">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-date">01/2023 - 05/2023</span>
+                        </div>
+                        <h3 class="timeline-title">Data Engineering Bootcamp Üyesi</h3>
+                        <h4 class="timeline-company">Miuul</h4>
+                        <p class="timeline-description">
+                            Veri mühendisliği alanında PostgreSQL, MongoDB, SQL, Docker, Kubernetes,
+                            Apache Hadoop (HDFS, YARN, Hive), Apache Kafka teknolojileriyle proje bazlı tecrübe
+                            kazandım.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">Kubernetes</span>
+                            <span class="tag">Kafka</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item reveal-left">
+                    <div class="timeline-marker">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-date">11/2022 - 04/2023</span>
+                        </div>
+                        <h3 class="timeline-title">Veri Bilimci</h3>
+                        <h4 class="timeline-company">ShipShack Yazılım ve Lojistik Hizmetleri</h4>
+                        <p class="timeline-description">
+                            Makine öğrenmesi ve derin öğrenme modelleriyle gerçek zamanlı talep tahminleri geliştirdim.
+                            Power BI üzerinde haftalık ve aylık analizler oluşturdum.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">ML</span>
+                            <span class="tag">DL</span>
+                            <span class="tag">Power BI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item reveal-right">
+                    <div class="timeline-marker">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-date">06/2022 - 10/2024</span>
+                        </div>
+                        <h3 class="timeline-title">Mentor</h3>
+                        <h4 class="timeline-company">Global AI Hub</h4>
+                        <p class="timeline-description">
+                            Yapay zeka ve derin öğrenme kamplarında gönüllü mentor olarak görev aldım.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">AI</span>
+                            <span class="tag">Mentörlük</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item reveal-left">
+                    <div class="timeline-marker">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-date">11/2021 - 05/2022</span>
+                        </div>
+                        <h3 class="timeline-title">Bilişim Öğretmeni</h3>
+                        <h4 class="timeline-company">Özel Başarı Fen ve Teknoloji Koleji</h4>
+                        <p class="timeline-description">
+                            Öğrencilere robotik kodlama alanında Arduino dersleri verdim.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Arduino</span>
+                            <span class="tag">Robotik</span>
+                            <span class="tag">Eğitim</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section education" id="education">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Akademik</span>
+                <h2 class="section-title">Eğitim</h2>
+            </div>
+            <div class="education-grid">
+                <div class="education-card reveal-up">
+                    <div class="education-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="education-content">
+                        <span class="education-date">2015 - 2021</span>
+                        <h3 class="education-degree">Elektrik Elektronik Mühendisliği</h3>
+                        <h4 class="education-school">Akdeniz Üniversitesi</h4>
+                        <p class="education-description">
+                            Lisans - İngilizce eğitim. Android tabanlı IoT akıllı sera sistemi geliştirdim;
+                            sensör verilerini Firebase gerçek zamanlı olarak işledim ve mobil uygulama ile
+                            uzaktan kontrol imkanı sağladım.
+                        </p>
+                    </div>
+                </div>
+                <div class="education-card reveal-up">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-content">
+                        <span class="education-date">2012 - 2014</span>
+                        <h3 class="education-degree">Elektrik Enerji İletim Dağıtım Bölümü</h3>
+                        <h4 class="education-school">Adıyaman Üniversitesi</h4>
+                        <p class="education-description">
+                            Ön Lisans
+                        </p>
+                    </div>
+                </div>
+                <div class="education-card reveal-up">
+                    <div class="education-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <div class="education-content">
+                        <span class="education-date">2008 - 2012</span>
+                        <h3 class="education-degree">Elektrik-Elektronik Bölümü</h3>
+                        <h4 class="education-school">Türk Telekom Anadolu Teknik Lisesi</h4>
+                        <p class="education-description">
+                            Lise
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section class="section certificates" id="certificates">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Başarılar</span>
+                <h2 class="section-title">Sertifikalar</h2>
+            </div>
+            <div class="certificates-grid">
+                <div class="certificate-card reveal-up">
+                    <div class="certificate-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="certificate-title">Veri Bilimi & AI Sertifikaları</h3>
+                    <p class="certificate-description">
+                        Veri bilimi, yapay zeka, makine öğrenmesi ve Python alanlarında 20+ eğitim sertifikası
+                    </p>
+                </div>
+                <div class="certificate-card reveal-up">
+                    <div class="certificate-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="certificate-title">BTK Akademi & Global AI Hub</h3>
+                    <p class="certificate-description">
+                        Miull, Udemy ve Microsoft tarafından verilen ileri seviye sertifikalar
+                    </p>
+                </div>
+                <div class="certificate-card reveal-up">
+                    <div class="certificate-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="certificate-title">NLP & Deep Learning</h3>
+                    <p class="certificate-description">
+                        NLP, LLM, TensorFlow, Derin Öğrenme ve RPA programlama konularında yetkinlik
+                    </p>
+                </div>
+                <div class="certificate-card reveal-up">
+                    <div class="certificate-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="certificate-title">Turkcell Programları</h3>
+                    <p class="certificate-description">
+                        Turkcell Focus, Yapay Zeka, Agile ve RPA programlarına katılım
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">İletişim</span>
+                <h2 class="section-title">Benimle İletişime Geçin</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info reveal-left">
+                    <h3>Birlikte Çalışalım</h3>
+                    <p>
+                        Projeleriniz için işbirliği yapmak veya sadece merhaba demek isterseniz,
+                        benimle iletişime geçmekten çekinmeyin!
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">E-posta</span>
+                                <a href="mailto:cv.emredemirbas@gmail.com">cv.emredemirbas@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">Konum</span>
+                                <span>Diyarbakır, Türkiye</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <h4>Sosyal Medya</h4>
+                        <div class="social-links">
+                            <a href="https://linkedin.com/in/" target="_blank" class="social-btn linkedin">
+                                <i class="fab fa-linkedin-in"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://medium.com/@" target="_blank" class="social-btn medium">
+                                <i class="fab fa-medium-m"></i>
+                                <span>Medium</span>
+                            </a>
+                            <a href="https://github.com/" target="_blank" class="social-btn github">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://kaggle.com/" target="_blank" class="social-btn kaggle">
+                                <i class="fab fa-kaggle"></i>
+                                <span>Kaggle</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper reveal-right">
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Adınız</label>
+                            <input type="text" id="name" name="name" required placeholder="Adınızı girin">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-posta</label>
+                            <input type="email" id="email" name="email" required placeholder="E-posta adresinizi girin">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Konu</label>
+                            <input type="text" id="subject" name="subject" placeholder="Mesaj konusu">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mesaj</label>
+                            <textarea id="message" name="message" rows="5" required
+                                placeholder="Mesajınızı yazın"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i>
+                            Mesaj Gönder
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">ED</span>
+                    <p>Emre Demirbaş</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#hero">Ana Sayfa</a>
+                    <a href="#about">Hakkımda</a>
+                    <a href="#skills">Beceriler</a>
+                    <a href="#experience">Deneyim</a>
+                    <a href="#contact">İletişim</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://linkedin.com/in/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://medium.com/@" target="_blank"><i class="fab fa-medium-m"></i></a>
+                    <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://kaggle.com/" target="_blank"><i class="fab fa-kaggle"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Emre Demirbaş. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

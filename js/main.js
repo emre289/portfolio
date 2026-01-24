@@ -70,7 +70,7 @@ function initTypingEffect() {
         'LLM Geliştiricisiyim',
         'Data Engineer\'ım'
     ];
-    
+
     let titleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -107,7 +107,7 @@ function initTypingEffect() {
 // ===== SCROLL REVEAL =====
 function initScrollReveal() {
     const revealElements = document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up');
-    
+
     const revealOptions = {
         threshold: 0.15,
         rootMargin: '0px 0px -50px 0px'
@@ -130,7 +130,7 @@ function initScrollReveal() {
 // ===== SKILL BARS =====
 function initSkillBars() {
     const skillBars = document.querySelectorAll('.skill-progress');
-    
+
     const skillOptions = {
         threshold: 0.5
     };
@@ -153,7 +153,7 @@ function initSkillBars() {
 // ===== STAT COUNTERS =====
 function initStatCounters() {
     const statNumbers = document.querySelectorAll('.stat-number');
-    
+
     const counterOptions = {
         threshold: 0.5
     };
@@ -193,18 +193,18 @@ function animateCounter(element, target) {
 // ===== SMOOTH SCROLL =====
 function initSmoothScroll() {
     const links = document.querySelectorAll('a[href^="#"]');
-    
+
     links.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            
+
             const targetId = link.getAttribute('href');
             const targetElement = document.querySelector(targetId);
-            
+
             if (targetElement) {
                 const navHeight = document.getElementById('navbar').offsetHeight;
                 const targetPosition = targetElement.offsetTop - navHeight;
-                
+
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
@@ -223,42 +223,65 @@ function initSmoothScroll() {
 // ===== CONTACT FORM =====
 function initContactForm() {
     const form = document.getElementById('contact-form');
-    
+
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             // Get form values
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const subject = document.getElementById('subject').value;
             const message = document.getElementById('message').value;
-            
+
             // Simple validation
             if (!name || !email || !message) {
                 showNotification('Lütfen tüm gerekli alanları doldurun.', 'error');
                 return;
             }
-            
+
             // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 showNotification('Lütfen geçerli bir e-posta adresi girin.', 'error');
                 return;
             }
-            
-            // Simulate form submission
+
+            // Show loading state
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
             submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                showNotification('Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağım.', 'success');
-                form.reset();
+
+            try {
+                // Create FormData
+                const formData = new FormData();
+                formData.append('name', name);
+                formData.append('email', email);
+                formData.append('subject', subject);
+                formData.append('message', message);
+
+                // Send to backend
+                const response = await fetch('/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showNotification(result.message || 'Mesajınız başarıyla gönderildi!', 'success');
+                    form.reset();
+                } else {
+                    showNotification(result.message || 'Bir hata oluştu. Lütfen tekrar deneyin.', 'error');
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                showNotification('Bağlantı hatası. Lütfen daha sonra tekrar deneyin.', 'error');
+            } finally {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-            }, 1500);
+            }
         });
     }
 }
@@ -269,7 +292,7 @@ function showNotification(message, type) {
     if (existingNotification) {
         existingNotification.remove();
     }
-    
+
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
@@ -278,7 +301,7 @@ function showNotification(message, type) {
         <span>${message}</span>
         <button class="notification-close"><i class="fas fa-times"></i></button>
     `;
-    
+
     // Add styles
     notification.style.cssText = `
         position: fixed;
@@ -297,15 +320,15 @@ function showNotification(message, type) {
         z-index: 10000;
         animation: slideInRight 0.3s ease;
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     // Close button
     notification.querySelector('.notification-close').addEventListener('click', () => {
         notification.style.animation = 'slideInRight 0.3s ease reverse';
         setTimeout(() => notification.remove(), 300);
     });
-    
+
     // Auto remove
     setTimeout(() => {
         if (notification.parentNode) {
@@ -319,13 +342,13 @@ function showNotification(message, type) {
 function initMobileMenu() {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
-    
+
     navToggle.addEventListener('click', () => {
         navToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
         document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
     });
-    
+
     // Close menu on outside click
     document.addEventListener('click', (e) => {
         if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
@@ -340,7 +363,7 @@ function initMobileMenu() {
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const shapes = document.querySelectorAll('.shape');
-    
+
     shapes.forEach((shape, index) => {
         const speed = 0.1 + (index * 0.05);
         shape.style.transform = `translateY(${scrolled * speed}px)`;
@@ -352,7 +375,7 @@ function initScrollProgress() {
     const progressBar = document.createElement('div');
     progressBar.className = 'scroll-progress';
     document.body.appendChild(progressBar);
-    
+
     window.addEventListener('scroll', () => {
         const scrollTop = window.pageYOffset;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;

@@ -228,21 +228,23 @@ function initContactForm() {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
+            // Form verilerini topluyoruz
+            const payload = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
 
             // Simple validation
-            if (!name || !email || !message) {
+            if (!payload.name || !payload.email || !payload.message) {
                 showNotification('Lütfen tüm gerekli alanları doldurun.', 'error');
                 return;
             }
 
             // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
+            if (!emailRegex.test(payload.email)) {
                 showNotification('Lütfen geçerli bir e-posta adresi girin.', 'error');
                 return;
             }
@@ -254,30 +256,19 @@ function initContactForm() {
             submitBtn.disabled = true;
 
             try {
-                // Create FormData
-                const formData = new FormData();
-                formData.append('name', name);
-                formData.append('email', email);
-                formData.append('subject', subject);
-                formData.append('message', message);
-
-                // Send to backend
-                const response = await fetch('/submit', {
+                // API_CONFIG.url üzerinden Google Cloud altyapısına (Apps Script) gönderiyoruz
+                await fetch(API_CONFIG.url, {
                     method: 'POST',
-                    body: formData
+                    mode: 'no-cors', // Cloud Console yetkilendirmesi için kritik
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
                 });
 
-                const result = await response.json();
-
-                if (result.success) {
-                    showNotification(result.message || 'Mesajınız başarıyla gönderildi!', 'success');
-                    form.reset();
-                } else {
-                    showNotification(result.message || 'Bir hata oluştu. Lütfen tekrar deneyin.', 'error');
-                }
+                showNotification('Mesajınız başarıyla gönderildi!', 'success');
+                form.reset();
             } catch (error) {
-                console.error('Form submission error:', error);
-                showNotification('Bağlantı hatası. Lütfen daha sonra tekrar deneyin.', 'error');
+                console.error('API Hatası:', error);
+                showNotification('Bir hata oluştu. Lütfen tekrar deneyin.', 'error');
             } finally {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;

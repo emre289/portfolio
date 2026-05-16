@@ -244,6 +244,17 @@ button {
     background-clip: text;
 }
 
+.nav-logo-img {
+    height: 44px;
+    width: auto;
+    display: block;
+    transition: opacity 0.2s ease;
+}
+
+.nav-logo-img:hover {
+    opacity: 0.85;
+}
+
 .nav-menu {
     display: flex;
     align-items: center;

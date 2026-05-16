@@ -1,7 +1,6 @@
 // ===== MAIN.JS - Emre Demirbaş AI Portfolio =====
 
 document.addEventListener('DOMContentLoaded', () => {
-    initPreloader();
     initNeuralCanvas();
     initNavbar();
     initTypingEffect();
@@ -14,23 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initContactForm();
     initCardHoverGlow();
 });
-
-// ===== PRELOADER =====
-function initPreloader() {
-    const preloader = document.getElementById('preloader');
-    if (!preloader) return;
-
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            preloader.classList.add('hidden');
-        }, 1900);
-    });
-
-    // Fallback: hide after 3s regardless
-    setTimeout(() => {
-        if (preloader) preloader.classList.add('hidden');
-    }, 3000);
-}
 
 // ===== NEURAL NETWORK CANVAS =====
 function initNeuralCanvas() {

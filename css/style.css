@@ -210,14 +210,14 @@ button {
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 20px 0;
+    padding: 8px 0;
     transition: var(--transition-normal);
 }
 
 .navbar.scrolled {
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(20px);
-    padding: 15px 0;
+    padding: 6px 0;
     box-shadow: var(--shadow-md);
 }
 
@@ -256,14 +256,15 @@ button {
 }
 
 .nav-logo-img {
-    height: 78px;
+    height: 110px;
     width: auto;
     display: block;
-    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4));
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5)) brightness(1.15) contrast(1.1);
 }
 
 .navbar.scrolled .nav-logo-img {
-    height: 60px;
+    height: 85px;
 }
 
 .nav-menu {

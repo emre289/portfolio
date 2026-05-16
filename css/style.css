@@ -245,26 +245,25 @@ button {
 }
 
 .nav-logo {
-    background: #ffffff;
-    padding: 6px 14px;
-    border-radius: 12px;
-    box-shadow: 0 0 18px rgba(0, 212, 255, 0.35), 0 2px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .nav-logo:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 28px rgba(0, 212, 255, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
+    filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.7));
 }
 
 .nav-logo-img {
-    height: 56px;
+    height: 78px;
     width: auto;
     display: block;
+    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4));
 }
 
 .navbar.scrolled .nav-logo-img {
-    height: 44px;
+    height: 60px;
 }
 
 .nav-menu {

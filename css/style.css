@@ -245,9 +245,10 @@ button {
 }
 
 .nav-logo-img {
-    height: 44px;
+    height: 56px;
     width: auto;
     display: block;
+    mix-blend-mode: screen;
     transition: opacity 0.2s ease;
 }
 

@@ -5,21 +5,27 @@
     --primary-light: #ffe066;
     --primary-glow: rgba(244, 196, 48, 0.3);
 
-    --bg-dark: #0a0a0a;
-    --bg-secondary: #0f0f1a;
-    --bg-card: #1a1a2e;
-    --bg-card-hover: #252542;
+    --cyan: #00d4ff;
+    --cyan-glow: rgba(0, 212, 255, 0.3);
+    --cyan-dark: #0099cc;
+
+    --bg-dark: #050510;
+    --bg-secondary: #0a0a1a;
+    --bg-card: #10102a;
+    --bg-card-hover: #1a1a3a;
 
     --text-primary: #ffffff;
     --text-secondary: #a0a0b0;
     --text-muted: #6b6b7b;
 
-    --border-color: rgba(255, 255, 255, 0.1);
+    --border-color: rgba(255, 255, 255, 0.08);
     --border-glow: rgba(244, 196, 48, 0.5);
+    --border-cyan: rgba(0, 212, 255, 0.3);
 
     --gradient-primary: linear-gradient(135deg, #f4c430 0%, #ff6b6b 100%);
-    --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #0a0a0a 100%);
-    --gradient-hero: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f0f1a 100%);
+    --gradient-cyan: linear-gradient(135deg, #00d4ff 0%, #6b5bff 100%);
+    --gradient-dark: linear-gradient(135deg, #10102a 0%, #050510 100%);
+    --gradient-hero: linear-gradient(135deg, #050510 0%, #0d0d2b 50%, #050510 100%);
 
     --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
@@ -1791,5 +1797,331 @@ button {
 
     .footer {
         padding-bottom: max(30px, env(safe-area-inset-bottom));
+    }
+}
+
+/* ===== NEURAL CANVAS ===== */
+.neural-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ===== SCANLINES ===== */
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(0, 212, 255, 0.015) 3px,
+        rgba(0, 212, 255, 0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ===== PRELOADER ===== */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    text-align: center;
+}
+
+.preloader-logo {
+    font-size: 3rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.preloader-bar {
+    width: 200px;
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 0 auto 15px;
+}
+
+.preloader-fill {
+    height: 100%;
+    background: var(--gradient-primary);
+    border-radius: 3px;
+    animation: preloaderFill 1.8s ease forwards;
+}
+
+.preloader-text {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--cyan);
+    letter-spacing: 2px;
+}
+
+/* ===== ACHIEVEMENT BADGE ===== */
+.achievement-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: linear-gradient(135deg, rgba(244, 196, 48, 0.15), rgba(255, 107, 107, 0.1));
+    border: 1px solid rgba(244, 196, 48, 0.4);
+    border-radius: var(--radius-xl);
+    font-size: 0.85rem;
+    color: var(--primary);
+    margin-bottom: 18px;
+    animation: achievementPulse 3s ease-in-out infinite;
+}
+
+.achievement-badge i {
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+/* ===== GLITCH TEXT ===== */
+.glitch-text {
+    position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--cyan);
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    animation: glitch1 4s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    left: -2px;
+    text-shadow: 2px 0 var(--primary);
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    animation: glitch2 4s infinite linear alternate-reverse;
+}
+
+/* ===== IMAGE RING ===== */
+.image-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
+                var(--gradient-primary) border-box;
+    animation: ringRotate 8s linear infinite;
+    z-index: 0;
+}
+
+.image-ring::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
+                var(--gradient-cyan) border-box;
+    animation: ringRotate 12s linear infinite reverse;
+}
+
+/* ===== BADGE-4 (4th floating badge) ===== */
+.badge-4 {
+    top: 55%;
+    right: -30px;
+    animation: floatBadge 7s ease-in-out infinite 1.5s;
+}
+
+/* ===== TECH TICKER ===== */
+.tech-ticker {
+    position: absolute;
+    bottom: 90px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 2;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.ticker-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: tickerScroll 30s linear infinite;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--cyan);
+    opacity: 0.5;
+    letter-spacing: 1px;
+}
+
+.ticker-track span {
+    white-space: nowrap;
+}
+
+/* ===== TIMELINE LIST ===== */
+.timeline-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.timeline-list li {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    padding-left: 18px;
+    position: relative;
+}
+
+.timeline-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--cyan);
+    font-size: 0.8rem;
+}
+
+.timeline-list li strong {
+    color: var(--primary);
+}
+
+/* ===== EDUCATION GRID - 3 column ===== */
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ===== CERTIFICATES GRID - 3 column ===== */
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* ===== CARD GLOW BORDER ON HOVER ===== */
+.skills-category,
+.timeline-content,
+.education-card,
+.certificate-card,
+.info-card {
+    position: relative;
+}
+
+.skills-category::before,
+.education-card::before,
+.certificate-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+    padding: 1px;
+    background: linear-gradient(135deg, transparent, var(--cyan), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.skills-category:hover::before,
+.education-card:hover::before,
+.certificate-card:hover::before {
+    opacity: 1;
+}
+
+/* ===== HERO IMPROVEMENTS ===== */
+.hero {
+    background: var(--gradient-hero);
+}
+
+/* ===== RESPONSIVE ADDITIONS ===== */
+@media (max-width: 1024px) {
+    .education-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .certificates-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .education-grid {
+        grid-template-columns: 1fr;
+    }
+    .certificates-grid {
+        grid-template-columns: 1fr;
+    }
+    .tech-ticker {
+        bottom: 80px;
+    }
+    .badge-4 {
+        display: none;
+    }
+    .achievement-badge {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .glitch-text::before,
+    .glitch-text::after {
+        display: none;
+    }
+    .tech-ticker {
+        display: none;
     }
 }

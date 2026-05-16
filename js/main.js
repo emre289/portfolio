@@ -1,16 +1,238 @@
-// ===== MAIN.JS - Personal Portfolio =====
+// ===== MAIN.JS - Emre Demirbaş AI Portfolio =====
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize all modules
+    initPreloader();
+    initNeuralCanvas();
     initNavbar();
     initTypingEffect();
     initScrollReveal();
     initSkillBars();
     initStatCounters();
     initSmoothScroll();
-    initContactForm();
     initMobileMenu();
+    initScrollProgress();
+    initContactForm();
+    initCardHoverGlow();
 });
+
+// ===== PRELOADER =====
+function initPreloader() {
+    const preloader = document.getElementById('preloader');
+    if (!preloader) return;
+
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            preloader.classList.add('hidden');
+        }, 1900);
+    });
+
+    // Fallback: hide after 3s regardless
+    setTimeout(() => {
+        if (preloader) preloader.classList.add('hidden');
+    }, 3000);
+}
+
+// ===== NEURAL NETWORK CANVAS =====
+function initNeuralCanvas() {
+    const canvas = document.getElementById('neural-canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let W = canvas.width = window.innerWidth;
+    let H = canvas.height = canvas.parentElement ? canvas.parentElement.offsetHeight : window.innerHeight;
+
+    let mouseX = W / 2;
+    let mouseY = H / 2;
+    let mouseActive = false;
+
+    const MAX_DIST = 160;
+    const MOUSE_DIST = 220;
+
+    function getNodeCount() {
+        return Math.min(90, Math.max(35, Math.floor(W * H / 10000)));
+    }
+
+    class Node {
+        constructor(randomY = true) {
+            this.x = Math.random() * W;
+            this.y = randomY ? Math.random() * H : -10;
+            this.vx = (Math.random() - 0.5) * 0.7;
+            this.vy = (Math.random() - 0.5) * 0.7;
+            this.r = Math.random() * 2 + 1;
+            this.phase = Math.random() * Math.PI * 2;
+            this.phaseSpeed = 0.015 + Math.random() * 0.02;
+            // Occasionally a node is gold (primary color)
+            this.isGold = Math.random() < 0.12;
+        }
+
+        update() {
+            this.phase += this.phaseSpeed;
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Mouse repulsion / attraction
+            if (mouseActive) {
+                const dx = this.x - mouseX;
+                const dy = this.y - mouseY;
+                const d = Math.sqrt(dx * dx + dy * dy);
+                if (d < MOUSE_DIST && d > 0) {
+                    const force = (MOUSE_DIST - d) / MOUSE_DIST;
+                    this.vx += (dx / d) * force * 0.06;
+                    this.vy += (dy / d) * force * 0.06;
+                }
+            }
+
+            // Speed damping
+            const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+            if (speed > 1.8) {
+                this.vx = (this.vx / speed) * 1.8;
+                this.vy = (this.vy / speed) * 1.8;
+            }
+
+            // Wrap edges
+            if (this.x < -30) this.x = W + 30;
+            if (this.x > W + 30) this.x = -30;
+            if (this.y < -30) this.y = H + 30;
+            if (this.y > H + 30) this.y = -30;
+        }
+
+        draw() {
+            const pulse = 0.8 + Math.sin(this.phase) * 0.3;
+            const coreR = this.r * pulse;
+            const glowR = coreR * 7;
+
+            const color = this.isGold ? '244, 196, 48' : '0, 212, 255';
+
+            // Glow
+            const grd = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, glowR);
+            grd.addColorStop(0, `rgba(${color}, 0.25)`);
+            grd.addColorStop(1, `rgba(${color}, 0)`);
+            ctx.beginPath();
+            ctx.fillStyle = grd;
+            ctx.arc(this.x, this.y, glowR, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Core
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(${color}, ${0.75 + Math.sin(this.phase) * 0.25})`;
+            ctx.arc(this.x, this.y, coreR, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    let nodes = [];
+
+    function buildNodes() {
+        nodes = [];
+        const n = getNodeCount();
+        for (let i = 0; i < n; i++) {
+            nodes.push(new Node(true));
+        }
+    }
+
+    buildNodes();
+
+    // Flowing data particles along edges
+    const dataParticles = [];
+
+    class DataParticle {
+        constructor(a, b) {
+            this.a = a;
+            this.b = b;
+            this.t = 0;
+            this.speed = 0.006 + Math.random() * 0.008;
+        }
+
+        update() { this.t += this.speed; }
+        done() { return this.t >= 1; }
+
+        draw() {
+            const x = this.a.x + (this.b.x - this.a.x) * this.t;
+            const y = this.a.y + (this.b.y - this.a.y) * this.t;
+            const alpha = Math.sin(this.t * Math.PI);
+
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(0, 212, 255, ${alpha * 0.9})`;
+            ctx.arc(x, y, 2, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    let frameCount = 0;
+
+    function animate() {
+        ctx.clearRect(0, 0, W, H);
+        frameCount++;
+
+        // Draw connections & spawn data particles
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const dx = nodes[i].x - nodes[j].x;
+                const dy = nodes[i].y - nodes[j].y;
+                const d = Math.sqrt(dx * dx + dy * dy);
+
+                if (d < MAX_DIST) {
+                    const alpha = (1 - d / MAX_DIST) * 0.55;
+                    const lineW = (1 - d / MAX_DIST) * 1.2;
+
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(0, 212, 255, ${alpha})`;
+                    ctx.lineWidth = lineW;
+                    ctx.moveTo(nodes[i].x, nodes[i].y);
+                    ctx.lineTo(nodes[j].x, nodes[j].y);
+                    ctx.stroke();
+
+                    // Occasionally spawn a data particle on an edge
+                    if (frameCount % 40 === 0 && Math.random() < 0.08) {
+                        dataParticles.push(new DataParticle(nodes[i], nodes[j]));
+                    }
+                }
+            }
+        }
+
+        // Update & draw nodes
+        nodes.forEach(n => { n.update(); n.draw(); });
+
+        // Update & draw data particles
+        for (let i = dataParticles.length - 1; i >= 0; i--) {
+            dataParticles[i].update();
+            dataParticles[i].draw();
+            if (dataParticles[i].done()) dataParticles.splice(i, 1);
+        }
+
+        // Cap particles
+        if (dataParticles.length > 60) dataParticles.splice(0, 10);
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // Mouse tracking
+    document.addEventListener('mousemove', e => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+        mouseActive = true;
+    });
+
+    document.addEventListener('mouseleave', () => { mouseActive = false; });
+
+    // Touch support
+    canvas.addEventListener('touchmove', e => {
+        const touch = e.touches[0];
+        const rect = canvas.getBoundingClientRect();
+        mouseX = touch.clientX - rect.left;
+        mouseY = touch.clientY - rect.top;
+        mouseActive = true;
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = canvas.parentElement ? canvas.parentElement.offsetHeight : window.innerHeight;
+        buildNodes();
+    });
+}
 
 // ===== NAVBAR =====
 function initNavbar() {
@@ -20,14 +242,12 @@ function initNavbar() {
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
 
-        // Add scrolled class
         if (currentScroll > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
 
-        // Hide/show navbar on scroll
         if (currentScroll > lastScroll && currentScroll > 500) {
             navbar.style.transform = 'translateY(-100%)';
         } else {
@@ -63,12 +283,15 @@ function initNavbar() {
 // ===== TYPING EFFECT =====
 function initTypingEffect() {
     const typingText = document.getElementById('typing-text');
+    if (!typingText) return;
+
     const titles = [
         'Veri Bilimciyim',
         'AI Uzmanıyım',
-        'ML Mühendisiyim',
         'LLM Geliştiricisiyim',
-        'Data Engineer\'ım'
+        'Agent Developer\'ım',
+        'Vibecoding Eğitmeniyim',
+        'ML Mühendisiyim',
     ];
 
     let titleIndex = 0;
@@ -82,20 +305,20 @@ function initTypingEffect() {
         if (isDeleting) {
             typingText.textContent = currentTitle.substring(0, charIndex - 1);
             charIndex--;
-            typingSpeed = 50;
+            typingSpeed = 45;
         } else {
             typingText.textContent = currentTitle.substring(0, charIndex + 1);
             charIndex++;
-            typingSpeed = 100;
+            typingSpeed = 95;
         }
 
         if (!isDeleting && charIndex === currentTitle.length) {
             isDeleting = true;
-            typingSpeed = 2000; // Pause at end
+            typingSpeed = 2200;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             titleIndex = (titleIndex + 1) % titles.length;
-            typingSpeed = 500; // Pause before new word
+            typingSpeed = 450;
         }
 
         setTimeout(type, typingSpeed);
@@ -108,11 +331,6 @@ function initTypingEffect() {
 function initScrollReveal() {
     const revealElements = document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up');
 
-    const revealOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -120,20 +338,14 @@ function initScrollReveal() {
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, revealOptions);
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    revealElements.forEach(element => {
-        revealObserver.observe(element);
-    });
+    revealElements.forEach(el => revealObserver.observe(el));
 }
 
 // ===== SKILL BARS =====
 function initSkillBars() {
     const skillBars = document.querySelectorAll('.skill-progress');
-
-    const skillOptions = {
-        threshold: 0.5
-    };
 
     const skillObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -143,20 +355,14 @@ function initSkillBars() {
                 skillObserver.unobserve(entry.target);
             }
         });
-    }, skillOptions);
+    }, { threshold: 0.5 });
 
-    skillBars.forEach(bar => {
-        skillObserver.observe(bar);
-    });
+    skillBars.forEach(bar => skillObserver.observe(bar));
 }
 
 // ===== STAT COUNTERS =====
 function initStatCounters() {
     const statNumbers = document.querySelectorAll('.stat-number');
-
-    const counterOptions = {
-        threshold: 0.5
-    };
 
     const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -166,18 +372,15 @@ function initStatCounters() {
                 counterObserver.unobserve(entry.target);
             }
         });
-    }, counterOptions);
+    }, { threshold: 0.5 });
 
-    statNumbers.forEach(number => {
-        counterObserver.observe(number);
-    });
+    statNumbers.forEach(number => counterObserver.observe(number));
 }
 
 function animateCounter(element, target) {
     let current = 0;
     const increment = target / 50;
-    const duration = 2000;
-    const stepTime = duration / 50;
+    const stepTime = 2000 / 50;
 
     const timer = setInterval(() => {
         current += increment;
@@ -197,24 +400,21 @@ function initSmoothScroll() {
     links.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-
             const targetId = link.getAttribute('href');
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
                 const navHeight = document.getElementById('navbar').offsetHeight;
-                const targetPosition = targetElement.offsetTop - navHeight;
-
                 window.scrollTo({
-                    top: targetPosition,
+                    top: targetElement.offsetTop - navHeight,
                     behavior: 'smooth'
                 });
 
-                // Close mobile menu if open
                 const navMenu = document.getElementById('nav-menu');
                 const navToggle = document.getElementById('nav-toggle');
                 navMenu.classList.remove('active');
                 navToggle.classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
     });
@@ -223,71 +423,59 @@ function initSmoothScroll() {
 // ===== CONTACT FORM =====
 function initContactForm() {
     const form = document.getElementById('contact-form');
+    if (!form) return;
 
-    if (form) {
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-            // Form verilerini topluyoruz
-            const payload = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                subject: document.getElementById('subject').value,
-                message: document.getElementById('message').value
-            };
+        const payload = {
+            name: document.getElementById('name')?.value,
+            email: document.getElementById('email')?.value,
+            subject: document.getElementById('subject')?.value,
+            message: document.getElementById('message')?.value
+        };
 
-            // Simple validation
-            if (!payload.name || !payload.email || !payload.message) {
-                showNotification('Lütfen tüm gerekli alanları doldurun.', 'error');
-                return;
-            }
+        if (!payload.name || !payload.email || !payload.message) {
+            showNotification('Lütfen tüm gerekli alanları doldurun.', 'error');
+            return;
+        }
 
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(payload.email)) {
-                showNotification('Lütfen geçerli bir e-posta adresi girin.', 'error');
-                return;
-            }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(payload.email)) {
+            showNotification('Lütfen geçerli bir e-posta adresi girin.', 'error');
+            return;
+        }
 
-            // Show loading state
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
-            submitBtn.disabled = true;
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
+        submitBtn.disabled = true;
 
-            try {
-                // API_CONFIG.url üzerinden Google Apps Script'e gönder
-                const response = await fetch(API_CONFIG.url, {
+        try {
+            if (typeof API_CONFIG !== 'undefined' && API_CONFIG.url) {
+                await fetch(API_CONFIG.url, {
                     method: 'POST',
                     mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-
-                // no-cors modda response opaque olur, bu yüzden başarılı kabul ediyoruz
-                showNotification('Mesajınız başarıyla gönderildi!', 'success');
-                form.reset();
-            } catch (error) {
-                console.error('API Hatası:', error);
-                // no-cors modda bazı tarayıcılar hata fırlatabilir ama veri yine de gidebilir
-                showNotification('Mesajınız gönderildi!', 'success');
-                form.reset();
-            } finally {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
             }
-        });
-    }
+            showNotification('Mesajınız başarıyla gönderildi!', 'success');
+            form.reset();
+        } catch (error) {
+            showNotification('Mesajınız gönderildi!', 'success');
+            form.reset();
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
 }
 
 function showNotification(message, type) {
-    // Remove existing notifications
-    const existingNotification = document.querySelector('.notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
+    const existing = document.querySelector('.notification');
+    if (existing) existing.remove();
 
-    // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -296,39 +484,23 @@ function showNotification(message, type) {
         <button class="notification-close"><i class="fas fa-times"></i></button>
     `;
 
-    // Add styles
     notification.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        padding: 20px 25px;
-        background: ${type === 'success' ? '#10b981' : '#ef4444'};
-        color: white;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 0.95rem;
-        font-weight: 500;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        z-index: 10000;
+        position: fixed; bottom: 30px; right: 30px;
+        padding: 18px 24px; background: ${type === 'success' ? '#10b981' : '#ef4444'};
+        color: white; border-radius: 12px; display: flex; align-items: center;
+        gap: 12px; font-size: 0.95rem; font-weight: 500;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4); z-index: 10000;
         animation: slideInRight 0.3s ease;
     `;
 
     document.body.appendChild(notification);
 
-    // Close button
     notification.querySelector('.notification-close').addEventListener('click', () => {
-        notification.style.animation = 'slideInRight 0.3s ease reverse';
-        setTimeout(() => notification.remove(), 300);
+        notification.remove();
     });
 
-    // Auto remove
     setTimeout(() => {
-        if (notification.parentNode) {
-            notification.style.animation = 'slideInRight 0.3s ease reverse';
-            setTimeout(() => notification.remove(), 300);
-        }
+        if (notification.parentNode) notification.remove();
     }, 5000);
 }
 
@@ -343,7 +515,6 @@ function initMobileMenu() {
         document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
     });
 
-    // Close menu on outside click
     document.addEventListener('click', (e) => {
         if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
             navToggle.classList.remove('active');
@@ -352,17 +523,6 @@ function initMobileMenu() {
         }
     });
 }
-
-// ===== PARALLAX EFFECT =====
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const shapes = document.querySelectorAll('.shape');
-
-    shapes.forEach((shape, index) => {
-        const speed = 0.1 + (index * 0.05);
-        shape.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-});
 
 // ===== SCROLL PROGRESS =====
 function initScrollProgress() {
@@ -373,15 +533,39 @@ function initScrollProgress() {
     window.addEventListener('scroll', () => {
         const scrollTop = window.pageYOffset;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        progressBar.style.width = scrollPercent + '%';
+        progressBar.style.width = ((scrollTop / docHeight) * 100) + '%';
     });
 }
 
-// Initialize scroll progress
-initScrollProgress();
+// ===== PARALLAX - SHAPES =====
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const shapes = document.querySelectorAll('.shape');
+    shapes.forEach((shape, index) => {
+        const speed = 0.08 + index * 0.04;
+        shape.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+});
+
+// ===== CARD HOVER GLOW =====
+function initCardHoverGlow() {
+    const cards = document.querySelectorAll(
+        '.skills-category, .education-card, .certificate-card, .timeline-content'
+    );
+
+    cards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+}
 
 // ===== CONSOLE EASTER EGG =====
-console.log('%c✨ Merhaba! ✨', 'font-size: 24px; font-weight: bold; color: #f4c430;');
-console.log('%cBu portfolyo sitesi Emre Demirbaş tarafından oluşturulmuştur.', 'font-size: 14px; color: #a0a0b0;');
-console.log('%cİletişim: cv.emredemirbas@gmail.com', 'font-size: 12px; color: #6b6b7b;');
+console.log('%c🧠 Neural Network Active', 'font-size: 20px; font-weight: bold; color: #00d4ff;');
+console.log('%cEmre Demirbaş | AI & Veri Bilimi Uzmanı', 'font-size: 14px; color: #f4c430; font-weight: 600;');
+console.log('%cTurkcell Global Bilgi | Vibecoding Eğitmeni', 'font-size: 12px; color: #a0a0b0;');
+console.log('%c📧 cv.emredemirbas@gmail.com', 'font-size: 11px; color: #6b6b7b;');

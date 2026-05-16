@@ -1328,6 +1328,26 @@ button {
     display: block;
 }
 
+.footer-logo-img {
+    height: 110px;
+    width: auto;
+    display: block;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
+}
+
+@media (max-width: 768px) {
+    .footer-logo-img {
+        height: 72px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-logo-img {
+        height: 60px;
+    }
+}
+
 .footer-logo p {
     color: var(--text-muted);
     font-size: 0.95rem;

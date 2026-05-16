@@ -1399,6 +1399,14 @@ button {
 }
 
 @media (max-width: 768px) {
+    .nav-logo-img {
+        height: 56px;
+    }
+
+    .navbar.scrolled .nav-logo-img {
+        height: 46px;
+    }
+
     .nav-menu {
         position: fixed;
         top: 0;
@@ -1530,6 +1538,14 @@ button {
 }
 
 @media (max-width: 480px) {
+    .nav-logo-img {
+        height: 46px;
+    }
+
+    .navbar.scrolled .nav-logo-img {
+        height: 40px;
+    }
+
     .section {
         padding: 60px 0;
     }

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emre Demirbaş | Veri Bilimci & AI Uzmanı</title>
+    <title>Emre Demirbaş | AI & Veri Bilimi Uzmanı</title>
     <meta name="description"
-        content="Emre Demirbaş - Elektrik-Elektronik Mühendisi, Veri Bilimci, AI ve Makine Öğrenmesi Uzmanı. Python, LLM, Generative AI alanlarında uzman.">
+        content="Emre Demirbaş - AI/Veri Bilimi Uzmanı, Elektrik-Elektronik Mühendisi. LLM, MCP, RPA, Agent Systems alanlarında Turkcell Global Bilgi'de uçtan uca AI çözümleri geliştiriyor.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -18,6 +18,15 @@
 </head>
 
 <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">ED</div>
+            <div class="preloader-bar"><div class="preloader-fill"></div></div>
+            <p class="preloader-text">AI Sistemi Başlatılıyor...</p>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -43,6 +52,10 @@
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
+        <!-- Neural Network Canvas -->
+        <canvas id="neural-canvas" class="neural-canvas"></canvas>
+
+        <!-- Floating shapes (subtle) -->
         <div class="hero-bg-animation">
             <div class="floating-shapes">
                 <div class="shape shape-1"></div>
@@ -51,19 +64,29 @@
                 <div class="shape shape-4"></div>
             </div>
         </div>
+
+        <!-- Scanline effect -->
+        <div class="scanlines"></div>
+
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-text">
+                    <!-- Achievement badge -->
+                    <div class="achievement-badge">
+                        <i class="fas fa-trophy"></i>
+                        <span>Turkcell AI Challenge — <strong>1. Ödül</strong></span>
+                    </div>
+
                     <p class="hero-greeting">Merhaba, ben</p>
-                    <h1 class="hero-name">Emre Demirbaş</h1>
+                    <h1 class="hero-name glitch-text" data-text="Emre Demirbaş">Emre Demirbaş</h1>
                     <div class="hero-title-wrapper">
                         <span class="hero-title-static">Ben bir </span>
                         <span class="hero-title typing-text" id="typing-text"></span>
                         <span class="cursor">|</span>
                     </div>
                     <p class="hero-description">
-                        Veri bilimi, yapay zeka ve makine öğrenmesi alanlarında uzmanlaşmış bir mühendisim.
-                        LLM, Generative AI ve AI Agents teknolojileriyle yenilikçi çözümler geliştiriyorum.
+                        Kurumsal operasyon süreçlerini <strong>LLM</strong>, <strong>MCP</strong> ve <strong>RPA</strong>
+                        ile dönüştüren; <strong>Agent sistemleri</strong> ve uçtan uca AI platformları geliştiren Veri Bilimciyim.
                     </p>
                     <div class="hero-buttons">
                         <a href="#contact" class="btn btn-primary">
@@ -93,6 +116,7 @@
                 </div>
                 <div class="hero-image">
                     <div class="image-wrapper">
+                        <div class="image-ring"></div>
                         <div class="image-glow"></div>
                         <img src="resimler/pp.jpeg" alt="Emre Demirbaş" class="profile-image">
                     </div>
@@ -102,15 +126,63 @@
                     </div>
                     <div class="floating-badge badge-2">
                         <i class="fas fa-brain"></i>
-                        <span>AI/ML</span>
+                        <span>LLM / AI</span>
                     </div>
                     <div class="floating-badge badge-3">
+                        <i class="fas fa-robot"></i>
+                        <span>Agent</span>
+                    </div>
+                    <div class="floating-badge badge-4">
                         <i class="fas fa-database"></i>
-                        <span>Data</span>
+                        <span>MCP</span>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Tech ticker -->
+        <div class="tech-ticker">
+            <div class="ticker-track">
+                <span>Python</span><span>•</span>
+                <span>LLM</span><span>•</span>
+                <span>Gemma 4</span><span>•</span>
+                <span>MCP Protocol</span><span>•</span>
+                <span>RPA</span><span>•</span>
+                <span>Computer Vision</span><span>•</span>
+                <span>React</span><span>•</span>
+                <span>Flask</span><span>•</span>
+                <span>Docker</span><span>•</span>
+                <span>Power BI</span><span>•</span>
+                <span>PostgreSQL</span><span>•</span>
+                <span>MSSQL</span><span>•</span>
+                <span>Oracle</span><span>•</span>
+                <span>Apache Kafka</span><span>•</span>
+                <span>Kubernetes</span><span>•</span>
+                <span>AI Agents</span><span>•</span>
+                <span>Deep Learning</span><span>•</span>
+                <span>NLP</span><span>•</span>
+                <!-- repeat -->
+                <span>Python</span><span>•</span>
+                <span>LLM</span><span>•</span>
+                <span>Gemma 4</span><span>•</span>
+                <span>MCP Protocol</span><span>•</span>
+                <span>RPA</span><span>•</span>
+                <span>Computer Vision</span><span>•</span>
+                <span>React</span><span>•</span>
+                <span>Flask</span><span>•</span>
+                <span>Docker</span><span>•</span>
+                <span>Power BI</span><span>•</span>
+                <span>PostgreSQL</span><span>•</span>
+                <span>MSSQL</span><span>•</span>
+                <span>Oracle</span><span>•</span>
+                <span>Apache Kafka</span><span>•</span>
+                <span>Kubernetes</span><span>•</span>
+                <span>AI Agents</span><span>•</span>
+                <span>Deep Learning</span><span>•</span>
+                <span>NLP</span><span>•</span>
+            </div>
+        </div>
+
         <div class="scroll-indicator">
             <div class="mouse">
                 <div class="wheel"></div>
@@ -129,24 +201,24 @@
             <div class="about-content">
                 <div class="about-text reveal-left">
                     <p>
-                        <strong>Elektrik-Elektronik Mühendisi</strong> olarak mezun oldum ve kariyerime <strong>Veri
-                            Bilimi</strong>
-                        alanında devam ediyorum. Turkcell Global Bilgi'de <strong>Sabit ICT Uzmanı</strong> olarak
-                        çalışıyorum.
+                        Kurum içi <strong>AI Challenge</strong> yarışmasında proje sorumlusu olarak <strong>1. ödülü</strong> aldım.
+                        3+ yıldır <strong>Turkcell Global Bilgi</strong> bünyesinde, kurumsal operasyon süreçlerini
+                        yapay zeka, LLM ve RPA ile dönüştüren uçtan uca çözümler geliştiren <strong>Veri Bilimciyim</strong>.
                     </p>
                     <p>
-                        Müşteri şikayetlerini analiz ederek MSSQL, PostgreSQL ve Oracle veritabanları üzerinde L1-L2
-                        düzeyinde
-                        çözümler üretiyorum. RPA ile computer vision projesi geliştirdim.
+                        <strong>Google Gemma 4</strong> modelini on-prem ortamlara entegre ettim. <strong>MCP (Model Context Protocol)</strong>
+                        altyapısıyla LLM ↔ kurumsal veritabanı arasında güvenli iletişim katmanı tasarladım.
+                        <strong>React + Flask + Corpix (LLM)</strong> mimarisiyle mail analitiği, chatbot ve RPA entegrasyonlu
+                        uçtan uca AI platformu geliştirdim; Docker ile konteynerleştirilmiş dağıtım yaptım.
                     </p>
                     <p>
-                        Google'ın 27 milyar parametreli Gemma 3 modelini GPU sunucuları üzerinde çalıştırarak,
-                        <strong>MCP (Model Context Protocol)</strong> altyapısıyla LLM ve veritabanı arasında güvenli
-                        iletişim katmanı kuruyorum.
+                        <strong>Hermes</strong> ve <strong>OpenClaw</strong> gibi agent sistemlerini uzak sunucumda çalıştırarak
+                        projeler geliştirdim. Aynı zamanda <strong>Vibecoding Eğitmeni</strong> olarak 29 modüllük kapsamlı
+                        bir yapay zeka destekli yazılım geliştirme programı tasarlayıp sundum.
                     </p>
                     <div class="about-stats">
                         <div class="stat-item">
-                            <span class="stat-number" data-target="5">0</span>
+                            <span class="stat-number" data-target="3">0</span>
                             <span class="stat-label">Yıl Deneyim</span>
                         </div>
                         <div class="stat-item">
@@ -154,8 +226,8 @@
                             <span class="stat-label">Sertifika</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number" data-target="10">0</span>
-                            <span class="stat-label">Proje</span>
+                            <span class="stat-number" data-target="29">0</span>
+                            <span class="stat-label">Eğitim Modülü</span>
                         </div>
                     </div>
                 </div>
@@ -169,10 +241,31 @@
                             </div>
                         </div>
                         <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <span class="info-label">Telefon</span>
+                                <span class="info-value">+90 530 432 89 49</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
                             <i class="fas fa-graduation-cap"></i>
                             <div>
                                 <span class="info-label">Eğitim</span>
                                 <span class="info-value">Elektrik-Elektronik Mühendisi</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <span class="info-label">Konum</span>
+                                <span class="info-value">İstanbul, Türkiye</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-language"></i>
+                            <div>
+                                <span class="info-label">Diller</span>
+                                <span class="info-value">Türkçe (Ana dil) · İngilizce (B2)</span>
                             </div>
                         </div>
                     </div>
@@ -191,8 +284,52 @@
             <div class="skills-content">
                 <div class="skills-category reveal-up">
                     <h3 class="category-title">
+                        <i class="fas fa-brain"></i>
+                        Yapay Zeka & LLM
+                    </h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">LLM (Gemma 4, Corpix, Hermes)</span>
+                                <span class="skill-percentage">92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="92"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">MCP Protocol & Agent Systems</span>
+                                <span class="skill-percentage">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="88"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Computer Vision & Derin Öğrenme</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">NLP & Makine Öğrenmesi</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="90"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills-category reveal-up">
+                    <h3 class="category-title">
                         <i class="fas fa-code"></i>
-                        Programlama & AI
+                        Programlama & Backend
                     </h3>
                     <div class="skills-grid">
                         <div class="skill-item">
@@ -206,51 +343,16 @@
                         </div>
                         <div class="skill-item">
                             <div class="skill-header">
-                                <span class="skill-name">LLM (Büyük Dil Modelleri)</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="90"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span class="skill-name">Generative AI</span>
-                                <span class="skill-percentage">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="85"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span class="skill-name">AI Agents</span>
+                                <span class="skill-name">React & Flask</span>
                                 <span class="skill-percentage">80%</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-progress="80"></div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="skills-category reveal-up">
-                    <h3 class="category-title">
-                        <i class="fas fa-chart-bar"></i>
-                        Veri Bilimi & ML
-                    </h3>
-                    <div class="skills-grid">
                         <div class="skill-item">
                             <div class="skill-header">
-                                <span class="skill-name">Makine Öğrenmesi (ML)</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="90"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span class="skill-name">Derin Öğrenme (DL)</span>
+                                <span class="skill-name">RPA & Otomasyon</span>
                                 <span class="skill-percentage">85%</span>
                             </div>
                             <div class="skill-bar">
@@ -259,20 +361,11 @@
                         </div>
                         <div class="skill-item">
                             <div class="skill-header">
-                                <span class="skill-name">Veri Mühendisliği</span>
-                                <span class="skill-percentage">88%</span>
+                                <span class="skill-name">AI Destekli Geliştirme (Vibecoding)</span>
+                                <span class="skill-percentage">95%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-progress="88"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span class="skill-name">İstatistiksel Analiz</span>
-                                <span class="skill-percentage">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="85"></div>
+                                <div class="skill-progress" data-progress="95"></div>
                             </div>
                         </div>
                     </div>
@@ -280,12 +373,12 @@
                 <div class="skills-category reveal-up">
                     <h3 class="category-title">
                         <i class="fas fa-database"></i>
-                        Veritabanı & Araçlar
+                        Veri & DevOps
                     </h3>
                     <div class="skills-grid">
                         <div class="skill-item">
                             <div class="skill-header">
-                                <span class="skill-name">SQL</span>
+                                <span class="skill-name">SQL (MSSQL, PostgreSQL, Oracle)</span>
                                 <span class="skill-percentage">92%</span>
                             </div>
                             <div class="skill-bar">
@@ -294,7 +387,7 @@
                         </div>
                         <div class="skill-item">
                             <div class="skill-header">
-                                <span class="skill-name">Microsoft Power BI</span>
+                                <span class="skill-name">Power BI & Veri Görselleştirme</span>
                                 <span class="skill-percentage">88%</span>
                             </div>
                             <div class="skill-bar">
@@ -303,7 +396,7 @@
                         </div>
                         <div class="skill-item">
                             <div class="skill-header">
-                                <span class="skill-name">RPA</span>
+                                <span class="skill-name">Docker & Kubernetes</span>
                                 <span class="skill-percentage">80%</span>
                             </div>
                             <div class="skill-bar">
@@ -312,11 +405,11 @@
                         </div>
                         <div class="skill-item">
                             <div class="skill-header">
-                                <span class="skill-name">NLP & TensorFlow</span>
-                                <span class="skill-percentage">82%</span>
+                                <span class="skill-name">Apache Kafka & Hadoop</span>
+                                <span class="skill-percentage">78%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-progress="82"></div>
+                                <div class="skill-progress" data-progress="78"></div>
                             </div>
                         </div>
                     </div>
@@ -325,30 +418,18 @@
             <div class="tech-stack reveal-up">
                 <h3 class="tech-title">Teknoloji Yığını</h3>
                 <div class="tech-icons">
-                    <div class="tech-icon" title="Python">
-                        <i class="fab fa-python"></i>
-                    </div>
-                    <div class="tech-icon" title="Docker">
-                        <i class="fab fa-docker"></i>
-                    </div>
-                    <div class="tech-icon" title="Kubernetes">
-                        <i class="fas fa-dharmachakra"></i>
-                    </div>
-                    <div class="tech-icon" title="PostgreSQL">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <div class="tech-icon" title="MongoDB">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <div class="tech-icon" title="Apache Kafka">
-                        <i class="fas fa-stream"></i>
-                    </div>
-                    <div class="tech-icon" title="Hadoop">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <div class="tech-icon" title="Git">
-                        <i class="fab fa-git-alt"></i>
-                    </div>
+                    <div class="tech-icon" title="Python"><i class="fab fa-python"></i></div>
+                    <div class="tech-icon" title="Docker"><i class="fab fa-docker"></i></div>
+                    <div class="tech-icon" title="Kubernetes"><i class="fas fa-dharmachakra"></i></div>
+                    <div class="tech-icon" title="React"><i class="fab fa-react"></i></div>
+                    <div class="tech-icon" title="PostgreSQL"><i class="fas fa-database"></i></div>
+                    <div class="tech-icon" title="MongoDB"><i class="fas fa-leaf"></i></div>
+                    <div class="tech-icon" title="Apache Kafka"><i class="fas fa-stream"></i></div>
+                    <div class="tech-icon" title="Hadoop"><i class="fas fa-server"></i></div>
+                    <div class="tech-icon" title="Git"><i class="fab fa-git-alt"></i></div>
+                    <div class="tech-icon" title="LLM / AI"><i class="fas fa-brain"></i></div>
+                    <div class="tech-icon" title="Power BI"><i class="fas fa-chart-bar"></i></div>
+                    <div class="tech-icon" title="RPA"><i class="fas fa-robot"></i></div>
                 </div>
             </div>
         </div>
@@ -362,68 +443,125 @@
                 <h2 class="section-title">İş Deneyimi</h2>
             </div>
             <div class="timeline">
+
+                <!-- 1: Turkcell - Veri Bilimci (current) -->
                 <div class="timeline-item reveal-left">
                     <div class="timeline-marker">
-                        <i class="fas fa-briefcase"></i>
+                        <i class="fas fa-brain"></i>
                     </div>
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <span class="timeline-date">10/2023 - Devam</span>
+                            <span class="timeline-date">10/2023 — Devam</span>
                             <span class="timeline-badge current">Güncel</span>
                         </div>
-                        <h3 class="timeline-title">Sabit ICT Uzmanı</h3>
-                        <h4 class="timeline-company">Turkcell Global Bilgi</h4>
-                        <p class="timeline-description">
-                            Turkcell Superonline müşteri şikayetlerini MSSQL, PostgreSQL, Oracle üzerinden analiz ederek
-                            L1-L2 düzeyinde çözümler üretiyorum. RPA ile computer vision projesi geliştirdim.
-    
-                            Google'ın Gemma 3 modelini GPU sunucularında çalıştırarak MCP altyapısıyla akıllı iş
-                            akışları tasarlıyorum.
-                        </p>
+                        <h3 class="timeline-title">Veri Bilimci</h3>
+                        <h4 class="timeline-company">Turkcell Global Bilgi &nbsp;·&nbsp; AI / LLM / RPA / Veri Analizi</h4>
+                        <ul class="timeline-list">
+                            <li>MSSQL, PostgreSQL ve Oracle üzerinden müşteri şikayetlerini analiz ederek L1–L2 düzeyinde çözümler üretiyorum.</li>
+                            <li><strong>Computer Vision</strong> tabanlı derin öğrenme katmanı ile manuel kontrolleri uçtan uca RPA otomasyonuna dönüştürdüm.</li>
+                            <li><strong>Google Gemma 4</strong> açık kaynak LLM'i on-prem birden fazla operasyonel akışa entegre ettim; karar verme süresini ve manuel iş yükünü ölçülebilir biçimde azalttım.</li>
+                            <li><strong>MCP (Model Context Protocol)</strong> altyapısı ile LLM ↔ kurumsal veritabanı arasında güvenli iletişim katmanı tasarladım; modelin doğrudan DB sorgusu yapabildiği akıllı iş akışları oluşturdum.</li>
+                            <li><strong>Agent Platform</strong> geliştirdim: React + Flask + Corpix mimarisinde mail analitiği, thread gruplama, görsel/ek analizi, chatbot, BİP SMS bildirimi ve zamanlanmış RPA otomasyonu — Docker ile konteynerleştirilmiş.</li>
+                            <li>Microsoft Power BI dashboard'ları ile süreç analizlerini görselleştirerek yönetim ekiplerine düzenli raporlama sağladım.</li>
+                        </ul>
                         <div class="timeline-tags">
                             <span class="tag">Python</span>
-                            <span class="tag">LLM</span>
+                            <span class="tag">Gemma 4</span>
                             <span class="tag">MCP</span>
                             <span class="tag">RPA</span>
+                            <span class="tag">React</span>
+                            <span class="tag">Flask</span>
+                            <span class="tag">Docker</span>
                             <span class="tag">Power BI</span>
+                            <span class="tag">Computer Vision</span>
                         </div>
                     </div>
                 </div>
+
+                <!-- 2: Vibecoding Eğitmeni -->
+                <div class="timeline-item reveal-right">
+                    <div class="timeline-marker">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-date">2025 — Devam</span>
+                            <span class="timeline-badge current">Güncel</span>
+                        </div>
+                        <h3 class="timeline-title">Vibecoding Eğitmeni</h3>
+                        <h4 class="timeline-company">Freelance / Özel Eğitim Programı</h4>
+                        <ul class="timeline-list">
+                            <li>Kodlama deneyimi olmayan katılımcılara, yapay zeka destekli yazılım geliştirme konusunda <strong>29 modüllük</strong> kapsamlı bir program tasarladım ve teslim ettim.</li>
+                            <li>Claude Code, OpenAI Codex ve Antigravity araçlarıyla pratik proje geliştirme öğrettim.</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tag">Claude Code</span>
+                            <span class="tag">OpenAI Codex</span>
+                            <span class="tag">Vibecoding</span>
+                            <span class="tag">AI Eğitim</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3: Global AI Hub Mentor -->
+                <div class="timeline-item reveal-left">
+                    <div class="timeline-marker">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-date">06/2022 — 10/2024</span>
+                        </div>
+                        <h3 class="timeline-title">Mentor (Gönüllü)</h3>
+                        <h4 class="timeline-company">Global AI Hub</h4>
+                        <ul class="timeline-list">
+                            <li>Yapay zeka ve derin öğrenme kamplarında katılımcılara teknik mentörlük sağladım.</li>
+                            <li>Proje danışmanlığı ve kod incelemesi yaptım.</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tag">AI</span>
+                            <span class="tag">Derin Öğrenme</span>
+                            <span class="tag">Mentörlük</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4: Technocamp 2023 -->
                 <div class="timeline-item reveal-right">
                     <div class="timeline-marker">
                         <i class="fas fa-briefcase"></i>
                     </div>
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <span class="timeline-date">07/2023 - 09/2023</span>
+                            <span class="timeline-date">07/2023 — 09/2023</span>
                         </div>
-                        <h3 class="timeline-title">Veri Bilimci</h3>
-                        <h4 class="timeline-company">Turkcell Global Bilgi - Technocamp 2023</h4>
-                        <p class="timeline-description">
-                            4.000 kişi arasından seçilerek kadroya alınan 30 kişilik ekipte yer aldım.
-                            Veri bilimi alanında kapsamlı eğitimler aldım.
-                        </p>
+                        <h3 class="timeline-title">Veri Bilimci — Technocamp 2023</h3>
+                        <h4 class="timeline-company">Turkcell Global Bilgi</h4>
+                        <ul class="timeline-list">
+                            <li>4.000 başvuru arasından seçilen <strong>30 kişilik</strong> ekipte yer alarak veri bilimi alanında ileri seviye program tamamlayarak Turkcell Global Bilgi kariyerime başladım.</li>
+                        </ul>
                         <div class="timeline-tags">
                             <span class="tag">Veri Bilimi</span>
                             <span class="tag">Analytics</span>
                         </div>
                     </div>
                 </div>
+
+                <!-- 5: Green Science -->
                 <div class="timeline-item reveal-left">
                     <div class="timeline-marker">
-                        <i class="fas fa-briefcase"></i>
+                        <i class="fas fa-charging-station"></i>
                     </div>
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <span class="timeline-date">04/2023 - 07/2023</span>
+                            <span class="timeline-date">04/2023 — 07/2023</span>
                         </div>
                         <h3 class="timeline-title">Veri Bilimci</h3>
-                        <h4 class="timeline-company">Elektrikli Şarj İstasyon Ağı - Green Science</h4>
-                        <p class="timeline-description">
-                            Python ile API üzerinden OCPP loglarını toplayarak şarj istasyonlarının iletişim
-                            protokollerini
-                            ve performansını analiz ettim. Web sitesi tasarımını yaptım.
-                        </p>
+                        <h4 class="timeline-company">Green Science — Elektrikli Şarj İstasyon Ağı</h4>
+                        <ul class="timeline-list">
+                            <li>Python ile API üzerinden OCPP loglarını topladım; şarj istasyonlarının iletişim protokollerini ve performansını analiz ettim.</li>
+                            <li>Tespit edilen problemlere çözüm önerileri geliştirerek ilgili birimlere düzenli raporlama yaptım; kurumsal web sitesi tasarımını üstlendim.</li>
+                        </ul>
                         <div class="timeline-tags">
                             <span class="tag">Python</span>
                             <span class="tag">API</span>
@@ -431,82 +569,45 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 6: ShipShack -->
                 <div class="timeline-item reveal-right">
                     <div class="timeline-marker">
-                        <i class="fas fa-briefcase"></i>
+                        <i class="fas fa-ship"></i>
                     </div>
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <span class="timeline-date">01/2023 - 05/2023</span>
-                        </div>
-                        <h3 class="timeline-title">Data Engineering Bootcamp Üyesi</h3>
-                        <h4 class="timeline-company">Miuul</h4>
-                        <p class="timeline-description">
-                            Veri mühendisliği alanında PostgreSQL, MongoDB, SQL, Docker, Kubernetes,
-                            Apache Hadoop (HDFS, YARN, Hive), Apache Kafka teknolojileriyle proje bazlı tecrübe
-                            kazandım.
-                        </p>
-                        <div class="timeline-tags">
-                            <span class="tag">PostgreSQL</span>
-                            <span class="tag">Docker</span>
-                            <span class="tag">Kubernetes</span>
-                            <span class="tag">Kafka</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item reveal-left">
-                    <div class="timeline-marker">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <span class="timeline-date">11/2022 - 04/2023</span>
+                            <span class="timeline-date">11/2022 — 04/2023</span>
                         </div>
                         <h3 class="timeline-title">Veri Bilimci</h3>
                         <h4 class="timeline-company">ShipShack Yazılım ve Lojistik Hizmetleri</h4>
-                        <p class="timeline-description">
-                            Makine öğrenmesi ve derin öğrenme modelleriyle gerçek zamanlı talep tahminleri geliştirdim.
-                            Power BI üzerinde haftalık ve aylık analizler oluşturdum.
-                        </p>
+                        <ul class="timeline-list">
+                            <li>Smoothing tabanlı oto-regresif yöntemler ile makine öğrenmesi ve derin öğrenme modelleri kullanarak firmalara özel gerçek zamanlı talep tahmin sistemleri geliştirdim.</li>
+                            <li>Power BI üzerinde haftalık ve aylık analiz dashboard'ları oluşturarak yönetime düzenli rapor ve sunumlar hazırladım.</li>
+                        </ul>
                         <div class="timeline-tags">
                             <span class="tag">ML</span>
-                            <span class="tag">DL</span>
+                            <span class="tag">Derin Öğrenme</span>
                             <span class="tag">Power BI</span>
+                            <span class="tag">Zaman Serisi</span>
                         </div>
                     </div>
                 </div>
-                <div class="timeline-item reveal-right">
-                    <div class="timeline-marker">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <span class="timeline-date">06/2022 - 10/2024</span>
-                        </div>
-                        <h3 class="timeline-title">Mentor</h3>
-                        <h4 class="timeline-company">Global AI Hub</h4>
-                        <p class="timeline-description">
-                            Yapay zeka ve derin öğrenme kamplarında gönüllü mentor olarak görev aldım.
-                        </p>
-                        <div class="timeline-tags">
-                            <span class="tag">AI</span>
-                            <span class="tag">Mentörlük</span>
-                        </div>
-                    </div>
-                </div>
+
+                <!-- 7: Bilişim Öğretmeni -->
                 <div class="timeline-item reveal-left">
                     <div class="timeline-marker">
                         <i class="fas fa-chalkboard-teacher"></i>
                     </div>
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <span class="timeline-date">11/2021 - 05/2022</span>
+                            <span class="timeline-date">11/2021 — 06/2022</span>
                         </div>
                         <h3 class="timeline-title">Bilişim Öğretmeni</h3>
                         <h4 class="timeline-company">Özel Başarı Fen ve Teknoloji Koleji</h4>
-                        <p class="timeline-description">
-                            Öğrencilere robotik kodlama alanında Arduino dersleri verdim.
-                        </p>
+                        <ul class="timeline-list">
+                            <li>Ortaokul ve lise öğrencilerine Arduino tabanlı robotik kodlama dersleri verdim.</li>
+                        </ul>
                         <div class="timeline-tags">
                             <span class="tag">Arduino</span>
                             <span class="tag">Robotik</span>
@@ -514,6 +615,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -526,34 +628,80 @@
                 <h2 class="section-title">Eğitim</h2>
             </div>
             <div class="education-grid">
+
+                <div class="education-card reveal-up">
+                    <div class="education-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="education-content">
+                        <span class="education-date">03/2026 — 04/2026</span>
+                        <h3 class="education-degree">Yapay Zeka Programı</h3>
+                        <h4 class="education-school">Boğaziçi Üniversitesi</h4>
+                        <p class="education-description">
+                            LLM temelleri, Fine-Tuning & RLHF teknikleri, LLM çıkarım motorları ve model optimizasyonu,
+                            yapay zeka ajanları ve otomasyon sistemleri.
+                        </p>
+                    </div>
+                </div>
+
                 <div class="education-card reveal-up">
                     <div class="education-icon">
                         <i class="fas fa-university"></i>
                     </div>
                     <div class="education-content">
-                        <span class="education-date">2015 - 2021</span>
-                        <h3 class="education-degree">Elektrik Elektronik Mühendisliği</h3>
-                        <h4 class="education-school">Akdeniz Üniversitesi</h4>
+                        <span class="education-date">2015 — 2021</span>
+                        <h3 class="education-degree">Elektrik-Elektronik Mühendisliği</h3>
+                        <h4 class="education-school">Akdeniz Üniversitesi — Lisans (İngilizce)</h4>
                         <p class="education-description">
-                            Lisans - İngilizce eğitim. Android tabanlı IoT akıllı sera sistemi geliştirdim;
-                            sensör verilerini Firebase gerçek zamanlı olarak işledim ve mobil uygulama ile
-                            uzaktan kontrol imkanı sağladım.
+                            Bitirme Projesi: Android tabanlı IoT akıllı sera sistemi — sensör verilerinin Firebase
+                            üzerinden gerçek zamanlı işlenmesi ve mobil uygulama ile uzaktan kontrol.
                         </p>
                     </div>
                 </div>
+
+                <div class="education-card reveal-up">
+                    <div class="education-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="education-content">
+                        <span class="education-date">01/2023 — 05/2023</span>
+                        <h3 class="education-degree">Data Engineering Bootcamp</h3>
+                        <h4 class="education-school">Miuul</h4>
+                        <p class="education-description">
+                            PostgreSQL, MongoDB, Docker, Kubernetes, Apache Hadoop (HDFS, YARN, Hive),
+                            Apache Kafka teknolojileriyle proje bazlı veri mühendisliği deneyimi.
+                        </p>
+                    </div>
+                </div>
+
                 <div class="education-card reveal-up">
                     <div class="education-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <div class="education-content">
-                        <span class="education-date">2012 - 2014</span>
-                        <h3 class="education-degree">Elektrik Enerji İletim Dağıtım Bölümü</h3>
-                        <h4 class="education-school">Adıyaman Üniversitesi</h4>
+                        <span class="education-date">2012 — 2014</span>
+                        <h3 class="education-degree">Elektrik Enerji İletim & Dağıtım</h3>
+                        <h4 class="education-school">Adıyaman Üniversitesi — Ön Lisans</h4>
                         <p class="education-description">
-                            Ön Lisans
+                            Elektrik enerji sistemleri, iletim ve dağıtım altyapıları üzerine teknik eğitim.
                         </p>
                     </div>
                 </div>
+
+                <div class="education-card reveal-up">
+                    <div class="education-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="education-content">
+                        <span class="education-date">2008 — 2012</span>
+                        <h3 class="education-degree">Elektrik-Elektronik Bölümü</h3>
+                        <h4 class="education-school">Türk Telekom Anadolu Teknik Lisesi</h4>
+                        <p class="education-description">
+                            Elektrik-elektronik temelleri, devre analizi ve teknik uygulamalar.
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -563,43 +711,61 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-subtitle">Başarılar</span>
-                <h2 class="section-title">Sertifikalar</h2>
+                <h2 class="section-title">Sertifikalar & Ödüller</h2>
             </div>
             <div class="certificates-grid">
+                <div class="certificate-card reveal-up">
+                    <div class="certificate-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="certificate-title">Turkcell AI Challenge — 1. Ödül</h3>
+                    <p class="certificate-description">
+                        Kurum içi yapay zeka yarışmasında proje sorumlusu olarak birinci olduk.
+                    </p>
+                </div>
                 <div class="certificate-card reveal-up">
                     <div class="certificate-icon">
                         <i class="fas fa-certificate"></i>
                     </div>
                     <h3 class="certificate-title">Veri Bilimi & AI Sertifikaları</h3>
                     <p class="certificate-description">
-                        Veri bilimi, yapay zeka, makine öğrenmesi ve Python alanlarında 20+ eğitim sertifikası
+                        Veri bilimi, yapay zeka, makine öğrenmesi ve Python alanlarında <strong>20+ ileri seviye</strong> eğitim sertifikası.
                     </p>
                 </div>
                 <div class="certificate-card reveal-up">
                     <div class="certificate-icon">
                         <i class="fas fa-award"></i>
                     </div>
-                    <h3 class="certificate-title">BTK Akademi & Global AI Hub</h3>
+                    <h3 class="certificate-title">BTK Akademi · Global AI Hub · Miuul</h3>
                     <p class="certificate-description">
-                        Miull, Udemy ve Microsoft tarafından verilen ileri seviye sertifikalar
+                        Udemy ve Microsoft tarafından verilen ileri seviye sertifikalar.
                     </p>
                 </div>
                 <div class="certificate-card reveal-up">
                     <div class="certificate-icon">
                         <i class="fas fa-brain"></i>
                     </div>
-                    <h3 class="certificate-title">NLP & Deep Learning</h3>
+                    <h3 class="certificate-title">NLP · LLM · Derin Öğrenme · RPA</h3>
                     <p class="certificate-description">
-                        NLP, LLM, TensorFlow, Derin Öğrenme ve RPA programlama konularında yetkinlik
+                        Uzmanlık alanlarında kapsamlı sertifikasyon ve pratik proje deneyimi.
                     </p>
                 </div>
                 <div class="certificate-card reveal-up">
                     <div class="certificate-icon">
-                        <i class="fas fa-trophy"></i>
+                        <i class="fas fa-star"></i>
                     </div>
-                    <h3 class="certificate-title">Turkcell Programları</h3>
+                    <h3 class="certificate-title">Turkcell Kurumsal Programlar</h3>
                     <p class="certificate-description">
-                        Turkcell Focus, Yapay Zeka, Agile ve RPA programlarına katılım
+                        Yapay Zeka Elçisi, Turkcell Focus, Agile ve RPA programlarına katılım ve tamamlama.
+                    </p>
+                </div>
+                <div class="certificate-card reveal-up">
+                    <div class="certificate-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 class="certificate-title">Vibecoding Eğitmenliği</h3>
+                    <p class="certificate-description">
+                        29 modüllük AI destekli yazılım geliştirme programı tasarlayıp başarıyla tamamladım.
                     </p>
                 </div>
             </div>
@@ -617,13 +783,17 @@
                 <div class="contact-info reveal-left">
                     <h3>Birlikte Çalışalım</h3>
                     <p>
-                        Projeleriniz için işbirliği yapmak veya sadece merhaba demek isterseniz,
-                        benimle iletişime geçmekten çekinmeyin!
+                        AI, LLM entegrasyonu, otomasyon veya veri bilimi projeleriniz için işbirliği yapmak
+                        ya da sadece merhaba demek isterseniz, benimle iletişime geçmekten çekinmeyin!
                     </p>
                     <div class="contact-details">
                         <a href="mailto:cv.emredemirbas@gmail.com" class="email-box">
                             <i class="fas fa-envelope"></i>
                             <span>cv.emredemirbas@gmail.com</span>
+                        </a>
+                        <a href="tel:+905304328949" class="email-box" style="margin-top:12px;">
+                            <i class="fas fa-phone"></i>
+                            <span>+90 530 432 89 49</span>
                         </a>
                     </div>
                     <div class="contact-social">
@@ -668,15 +838,14 @@
                     <a href="#contact">İletişim</a>
                 </div>
                 <div class="footer-social">
-                    <a href="https://www.linkedin.com/in/emredmbs/" target="_blank"><i
-                            class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.linkedin.com/in/emredmbs/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     <a href="https://medium.com/@emre_79045" target="_blank"><i class="fab fa-medium-m"></i></a>
                     <a href="https://github.com/emre289" target="_blank"><i class="fab fa-github"></i></a>
                     <a href="https://www.kaggle.com/emre289" target="_blank"><i class="fab fa-kaggle"></i></a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Emre Demirbaş. Tüm hakları saklıdır.</p>
+                <p>&copy; 2025 Emre Demirbaş. Tüm hakları saklıdır.</p>
             </div>
         </div>
     </footer>

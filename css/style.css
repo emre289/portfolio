@@ -259,8 +259,7 @@ button {
     height: 110px;
     width: auto;
     display: block;
-    mix-blend-mode: screen;
-    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5)) brightness(1.15) contrast(1.1);
+    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
 }
 
 .navbar.scrolled .nav-logo-img {
